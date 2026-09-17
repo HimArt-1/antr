@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 export default function Sidebar({ setView, currentView, onLogout }) {
   const menuItems = [
     { id: 'home', label: 'الرئيسية', icon: '🏠' },
@@ -40,6 +42,31 @@ export default function Sidebar({ setView, currentView, onLogout }) {
           </button>
         ))}
       </nav>
+
+      <div style={{ padding: '0 1rem', marginTop: '1rem' }}>
+        <button
+          onClick={() => navigate('/new-page')}
+          style={{
+            width: '100%',
+            padding: '0.8rem',
+            background: 'linear-gradient(135deg, var(--primary-gold), var(--primary-gold-hover))',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '12px',
+            textAlign: 'center',
+            cursor: 'pointer',
+            fontWeight: 600,
+            fontSize: '0.9rem',
+            boxShadow: '0 4px 12px rgba(197, 160, 89, 0.3)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px'
+          }}
+        >
+          <span>✨</span> اكتشف الواجهة الجديدة
+        </button>
+      </div>
     </aside>
   );
 }
