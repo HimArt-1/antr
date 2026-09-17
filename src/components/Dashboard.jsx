@@ -70,6 +70,7 @@ function Analytics() {
 
 export default function Dashboard({ onLogout }) {
   const [view, setView] = useState('home');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const renderContent = () => {
     switch(view) {
@@ -83,8 +84,22 @@ export default function Dashboard({ onLogout }) {
 
   return (
     <div className="dashboard-container" dir="rtl">
-      <Sidebar currentView={view} setView={setView} onLogout={onLogout} />
+      <Sidebar 
+        currentView={view} 
+        setView={(v) => { setView(v); setIsSidebarOpen(false); }} 
+        onLogout={onLogout} 
+        isOpen={isSidebarOpen}
+        setIsOpen={setIsSidebarOpen}
+      />
+      <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)} style={{ display: isSidebarOpen ? 'block' : 'none' }}></div>
       <main className="main-content">
+        <div className="top-bar-mobile">
+          <button className="hamburger-btn" onClick={() => setIsSidebarOpen(true)}>
+            ☰
+          </button>
+          <img src="/logo.png" alt="Logo" style={{ height: '30px', objectFit: 'contain' }} />
+          <div style={{ width: '30px' }}></div> {/* Spacer for centering */}
+        </div>
         {renderContent()}
       </main>
     </div>

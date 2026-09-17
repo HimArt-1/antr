@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-export default function Sidebar({ setView, currentView, onLogout }) {
+export default function Sidebar({ setView, currentView, onLogout, isOpen, setIsOpen }) {
   const menuItems = [
     { id: 'home', label: 'الرئيسية', icon: '🏠' },
     { id: 'clients', label: 'المتدربين', icon: '👥' },
@@ -9,9 +9,15 @@ export default function Sidebar({ setView, currentView, onLogout }) {
   ];
 
   return (
-    <aside className="sidebar">
-      <div className="sidebar-header" style={{ padding: '0 1.5rem', marginBottom: '2.5rem', textAlign: 'center' }}>
-        {/* We can use the logo here as well for a nice touch */}
+    <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
+      <div className="sidebar-header" style={{ padding: '0 1.5rem', marginBottom: '2.5rem', textAlign: 'center', position: 'relative' }}>
+        <button 
+          className="hamburger-btn" 
+          onClick={() => setIsOpen(false)} 
+          style={{ display: isOpen ? 'block' : 'none', position: 'absolute', left: '10px', top: '10px' }}
+        >
+          ✕
+        </button>
         <img src="/logo.png" alt="InterContinental Logo" style={{ maxWidth: '140px', marginBottom: '10px' }} />
         <span style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 500, letterSpacing: '1px' }}>بوابة المدربين</span>
       </div>
